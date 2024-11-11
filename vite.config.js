@@ -7,14 +7,10 @@ export default {
     drop: ["console", "debugger"],
   },
   build: {
-    emptyOutDir: true,
+    emptyOutDir: false,
   },
   css: {
-    preprocessorOptions: {
-      scss: {
-        api: "modern-compiler",
-      },
-    },
+    devSourcemap: true,
   },
   plugins: [
     cleanup(),
@@ -27,16 +23,6 @@ export default {
     globs.default({
       globs: ["frontend/web/**/snippets/*.liquid"],
       dest: "snippets",
-      clean: false,
-    }),
-    globs.default({
-      globs: ["frontend/web/**/scripts/*.js"],
-      dest: "assets",
-      clean: false,
-    }),
-    globs.default({
-      globs: ["frontend/web/**/styles/*.scss"],
-      dest: "assets",
       clean: false,
     }),
   ],

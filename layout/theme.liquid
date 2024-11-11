@@ -38,7 +38,6 @@
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-
     {%- liquid
       render 'vite-tag' with 'main.scss'
       render 'vite-tag' with 'main.js'
