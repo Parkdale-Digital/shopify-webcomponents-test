@@ -24,8 +24,8 @@
     "npm-check-updates": "^17.1.1",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-globlin": "^0.1.4",
-    "sass": "^1.78.0",
-    "vite": "^5.4.3",
+    "sass": "^1.80.6",
+    "vite": "^5.4.10",
     "vite-plugin-shopify": "^3.0.1",
     "vite-plugin-shopify-import-maps": "^0.5.4"
   },

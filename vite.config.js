@@ -1,16 +1,20 @@
 import shopify from "vite-plugin-shopify";
 import globs from "rollup-plugin-globlin";
-import cleanup from '@by-association-only/vite-plugin-shopify-clean'
+import cleanup from "@by-association-only/vite-plugin-shopify-clean";
 
 export default {
   esbuild: {
     drop: ["console", "debugger"],
   },
   build: {
-    emptyOutDir: false,
+    emptyOutDir: true,
   },
   css: {
-    devSourcemap: true,
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+      },
+    },
   },
   plugins: [
     cleanup(),
@@ -23,6 +27,16 @@ export default {
     globs.default({
       globs: ["frontend/web/**/snippets/*.liquid"],
       dest: "snippets",
+      clean: false,
+    }),
+    globs.default({
+      globs: ["frontend/web/**/scripts/*.js"],
+      dest: "assets",
+      clean: false,
+    }),
+    globs.default({
+      globs: ["frontend/web/**/styles/*.scss"],
+      dest: "assets",
       clean: false,
     }),
   ],
