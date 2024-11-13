@@ -1,0 +1,61 @@
+<section class="product-section">
+  <!-- Section Heading -->
+  <h2 class="section-heading">
+    {{ section.settings.section_heading }}
+  </h2>
+
+  <!-- Product Cards Grid -->
+  <div class="product-row">
+    {% for block in section.blocks %}
+      {% if block.settings.product != blank %}
+        {% assign product = all_products[block.settings.product] %}
+        
+        <!-- Render Product Card -->
+        <product-card
+          data-id="{{ product.variants.first.id }}" 
+          data-title="{{ product.title }}"
+          data-price="{{ product.price | money }}"
+          data-sale-price="{{ product.compare_at_price | money }}"
+          data-image="{{ product.featured_image | img_url: 'medium' }}">
+        </product-card>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Product Custom Card",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Section Heading",
+      "id": "section_heading",
+      "default": "Our Products",
+      "info": "The title of the section displayed at the top."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Custom Card",
+      "category": "Custom"
+    }
+  ],
+ 
+}
+{% endschema %}

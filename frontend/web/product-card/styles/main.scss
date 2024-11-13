@@ -1,0 +1,41 @@
+.product-section {
+    margin: 2rem 0;
+}
+  
+.product-section .section-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.product-row {
+    display:flex;
+    gap:20px;
+    padding: 0 1rem;
+    max-width: 1400px;
+    padding: 0 20px;
+    margin: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product-row .product-card .title {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+product-card {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0;
+    position: relative;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    max-width: calc(25% - 15px);
+    min-width: 320px;
+    border-radius: 5px;
+}

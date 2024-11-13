@@ -1,6 +1,6 @@
 import shopify from "vite-plugin-shopify";
-import globs from "rollup-plugin-globlin";
-import cleanup from '@by-association-only/vite-plugin-shopify-clean'
+import cleanup from '@by-association-only/vite-plugin-shopify-clean';
+  import copy from 'rollup-plugin-copy';
 
 export default {
   esbuild: {
@@ -15,15 +15,13 @@ export default {
   plugins: [
     cleanup(),
     shopify({ versionNumbers: true }),
-    globs.default({
-      globs: ["frontend/web/**/sections/*.liquid"],
-      dest: "sections",
-      clean: false,
-    }),
-    globs.default({
-      globs: ["frontend/web/**/snippets/*.liquid"],
-      dest: "snippets",
-      clean: false,
+    copy({
+      targets: [
+        { src: 'frontend/web/**/sections/*.liquid', dest: 'sections' },
+        { src: 'frontend/web/**/snippets/*.liquid', dest: 'snippets' },
+      ],
+      hook: 'writeBundle', // Use writeBundle hook to ensure files are copied after Vite build
+      verbose: true,
     }),
   ],
 };
