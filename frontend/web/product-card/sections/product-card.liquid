@@ -1,0 +1,60 @@
+{% render 'section-properites' %}
+{% render 'section-spacing' %} 
+
+<section class="product-section">
+  <h2 class="section-heading">{{ section.settings.section_heading }}</h2>
+
+  <div class="product-row">
+    {% for block in section.blocks %}
+      {% if block.settings.product != blank %}
+        {% assign product = all_products[block.settings.product] %}
+        
+        <!-- Surface Snippet for individual product card styling -->
+        <div {% render 'surface', class: 'product-card', background: section.settings.background, text_color: section.settings.text_color %}>
+          <product-card
+            data-product-id="{{ product.id }}"
+            data-product-name="{{ product.title }}"
+            data-price="{{ product.price | money }}"
+            data-sale-price="{{ product.compare_at_price | money }}"
+            data-image-url="{{ product.featured_image | img_url: 'medium' }}"
+            data-description="{{ product.description }}"
+          ></product-card>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Card",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Main Section Title",
+      "id": "main_section_title",
+      "default": "Products",
+      "info": "This is the updated title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Card",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

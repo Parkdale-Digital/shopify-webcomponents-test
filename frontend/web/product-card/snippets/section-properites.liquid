@@ -1,0 +1,15 @@
+{% assign section_settings = section.settings %}
+<div class="section-properties" 
+  style="background: {{ section_settings.background }}; 
+         color: {{ section_settings.text_color }}; 
+         padding: 20px 0;">
+  {% if section_settings.full_width %}
+    <div class="full-width-container">
+      {{ content_for_layout }}
+    </div>
+  {% else %}
+    <div class="container">
+      {{ content_for_layout }}
+    </div>
+  {% endif %}
+</div>
