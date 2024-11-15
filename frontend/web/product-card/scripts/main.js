@@ -44,13 +44,13 @@
         this.shadowRoot.innerHTML = `
           <style>
             .product-card img { width: 100%; height: auto; border-radius: 8px; }
-            .product-card .title { font-size: 16px; font-weight: 400; color: #000; margin-top: 1rem; }
+            .product-card .title { font-size: 16px; font-weight: 400; color: var(--box-title-color);; margin-top: 1rem; }
             .product-card .all-price {display: flex; align-items: center; gap: 5px; margin-top: 0.5rem; }
-            .product-card .price { color: #403b3b; font-size: 1.5rem; text-decoration: line-through; }
+            .product-card .price { color: --box-price-color; font-size: 1.5rem; text-decoration: line-through; }
             .product-card .sale-price { color: green; font-size: 2rem; }
             .product-card .sale-badge {
               text-align: center;
-              background-color: #484747;
+              background-color: var(--box-title-color);
               color: #fff;
               border: 1px solid transparent;
               border-radius: 40px;

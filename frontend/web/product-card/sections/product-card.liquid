@@ -1,5 +1,19 @@
 {% render 'section-properites' %}
-{% render 'section-spacing' %} 
+{% render 'section-spacing' %}
+
+{%- style -%}
+        .section-{{ section.id }}-padding {
+       padding-block: {{ section.settings.padding_top | times: 0.75 | round: 0 | append:'px' }} {{ section.settings.padding_bottom | times: 0.75 | round: 0 | append:'px' }};
+           }
+
+  :root{
+   --box-title-color : {{section.settings.box_title_color}};
+   --box-price-color : {{section.settings.box_price_color}};
+   --box-padding-top : {{section.settings.box_padding_top}};
+   --box-padding-bottom : {{section.settings.box_padding_bottom}};
+  }
+
+{%- endstyle -%}
 
 <section class="product-section">
   <h2 class="section-heading">{{ section.settings.section_heading }}</h2>
@@ -8,9 +22,15 @@
     {% for block in section.blocks %}
       {% if block.settings.product != blank %}
         {% assign product = all_products[block.settings.product] %}
-        
+
         <!-- Surface Snippet for individual product card styling -->
-        <div {% render 'surface', class: 'product-card', background: section.settings.background, text_color: section.settings.text_color %}>
+        <div
+          {% render 'surface',
+            class: 'product-card',
+            background: section.settings.background,
+            text_color: section.settings.text_color
+          %}
+        >
           <product-card
             data-product-id="{{ product.id }}"
             data-product-name="{{ product.title }}"
@@ -35,6 +55,36 @@
       "id": "main_section_title",
       "default": "Products",
       "info": "This is the updated title"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 130,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 130,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "box_title_color",
+      "label": "Box Title Color"
+    },
+    {
+      "type": "color",
+      "id": "box_price_color",
+      "label": "Box Price Color"
     }
   ],
   "blocks": [

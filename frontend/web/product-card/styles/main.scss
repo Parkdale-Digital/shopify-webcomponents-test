@@ -1,3 +1,4 @@
+
 product-card {
     display: block;
     width: 100%;
@@ -18,13 +19,6 @@ product-card {
     margin: auto;
   }
   
-  .product-section.with-background {
-    background-color: var(--section-background-color);
-  }
-  
-  .product-section.with-text-color {
-    color: var(--section-text-color);
-  }
   
   .product-section.custom-spacing {
     margin-bottom: 2rem;
