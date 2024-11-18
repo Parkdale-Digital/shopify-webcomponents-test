@@ -1,0 +1,31 @@
+.product-card {
+  display: block;
+  font-family: Arial, sans-serif;
+
+  .product-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-details {
+    padding: 16px;
+
+    .product-title {
+      font-size: 1.2em;
+      margin: 0 0 8px;
+    }
+
+    .product-price {
+      color: #f60;
+      font-size: 1.1em;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+    :host {
+      width: 100%;
+    }
+}
+  

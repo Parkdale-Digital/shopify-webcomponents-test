@@ -1,0 +1,10 @@
+{% assign product = all_products['example-product-handle'] %}
+
+<product-card 
+  data-title="{{ product.title }}" 
+  data-price="{{ product.price | divided_by: 100.0 }}" 
+  data-image="{{ product.featured_image | img_url: 'medium' }}">
+</product-card>
+
+<script src="{{ 'product-card/scripts/main.js' | asset_url }}" type="module"></script>
+<link rel="stylesheet" href="{{ 'product-card/styles/main.css' | asset_url }}" />
