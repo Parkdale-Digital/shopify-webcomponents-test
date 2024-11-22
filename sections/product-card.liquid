@@ -1,0 +1,41 @@
+<section class="product-card-section page-width">
+  <h1 class="section-title">{{ section.settings.title }}</h1>
+  {% if section.settings.product != blank %}
+  {% assign collection = collections[section.settings.collection] %}
+  {% else %}
+  {% assign collection = collections["all"] %}
+  {% endif %}
+  <div class="product-grid-cs">
+    {% for product in collection.products %}
+    <div class="product-card-container">
+      <product-card data-image="{{ product.featured_image | img_url: 'medium' }}" data-title="{{ product.title }}"
+        data-price="{{ product.price | money }}" data-description="{{ product.description | truncate: 100 }}"
+        data-product-id="{{ product.variants.first.id }}"></product-card>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+"name": "Product card",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Slideshow",
+"default": "Shop Our Featured Products"
+},
+{
+"type": "collection",
+"id": "collection",
+"label": "Select collection for card"
+}
+],
+"presets": [
+{
+"name": "Product card"
+}
+]
+}
+{% endschema %}
