@@ -50,6 +50,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "title": "Featured products",
         "heading_size": "h2",
@@ -75,10 +76,18 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "product_card_f4E6nQ": {
+      "type": "product-card",
+      "settings": {
+        "title": "Shop Our Featured Products",
+        "collection": "hydrogen"
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "product_card_f4E6nQ"
   ]
 }
