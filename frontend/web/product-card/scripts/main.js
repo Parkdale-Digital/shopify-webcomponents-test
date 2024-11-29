@@ -40,7 +40,7 @@ function templateMaker(productElement) {
         overflow: hidden;
         aspect-ratio: 1 / 1;
     }
-    .product-card-title, h5 {
+    .product-card-title {
         font-family: Helvetica, sans-serif;
         color: #112A46;
         text-decoration: none;
@@ -61,9 +61,7 @@ function templateMaker(productElement) {
             class="product-card-image">
       </a>
       <div class="product-card-content-wrapper">
-          <a href="${productElement.dataset.url}" class="product-card-title" aria-label="Go to the product page of ${productElement.dataset.title}">
-               <h5>${productElement.dataset.title}</h5>
-          </a>
+          <h5 class="product-card-title">${productElement.dataset.title}</h5>
           <slot name="price"></slot>
       </div>
       <a class="button primary-button" href="${productElement.dataset.url}" aria-label="Go to the product page of ${productElement.dataset.title}">View Product</a>

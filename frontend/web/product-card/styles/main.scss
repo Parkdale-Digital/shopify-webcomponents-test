@@ -59,13 +59,17 @@ $radius: 10px;
     }
     
     .product-card-price {
+        color: $subtext-color;
         text-align: center;
-        color: $text-color;
         font-family: $heading-font;
-        font-size: 2rem;
+        font-size: 1.75rem;
+        letter-spacing: 0.25rem;
+        font-weight: 500;
+        
         &.price-markdown {
             color: $sale-color;
             font-weight: 700;
+            font-size: 1.75rem;
             margin: 0 10px;
         }
         &.price-base {
