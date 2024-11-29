@@ -23,9 +23,18 @@ $radius: 10px;
 
 
 .product-card-custom {
+    &:hover {
+        opacity: 1;
+        transition: all ease-in-out 1s;
+
+        @include for-desktop-up {
+            opacity: .6;
+        }
+
+    }
     &.product-card-wrapper{
-        width: 90%;
-        max-width: none;
+        width: 80%;
+        max-width: 290px;
         margin: 0 auto 30px;
         display: block;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

@@ -4,28 +4,49 @@ function templateMaker(productElement) {
   const productCardStyles = `
   <style>
     .primary-button {
-    width: 90%;
-    margin: 16px 0;
-    padding: 16px;
-    display: inline-block;
-    background: #112A46;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #fff;
-    text-align: center;
-    font-size: 1.5rem;
-    letter-spacing: .5rem;
-    font-weight: 700;
-    border-radius: 5px;
+        width: 90%;
+        margin: 16px 0;
+        padding: 16px;
+        display: inline-block;
+        background: #112A46;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #fff;
+        text-align: center;
+        font-size: 1.25rem;
+        letter-spacing: .5rem;
+        font-weight: 700;
+        border-radius: 5px;
+        font-family: Helvetica, sans-serif;
+    }
+    @media (max-width: 599px) {
+        .primary-button {
+          font-size: 1.5rem;
+        }
     }
     a.primary-button::after {
-     bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+    .product-card-image-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+    }
+    .product-card-title, h5 {
+        font-family: Helvetica, sans-serif;
+        color: #112A46;
+        text-decoration: none;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
   </style>
   `;
