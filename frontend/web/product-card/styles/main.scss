@@ -7,17 +7,6 @@ $subtext-color: #565656;
 $sale-color: #A51919;
 $radius: 10px;
 
-//mixin for tap-target
-@mixin extend-tap-target{
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
-}
-
 // mixins for media queries
 @mixin for-phone-only {
     @media (max-width: 599px) { @content; }
@@ -64,7 +53,7 @@ $radius: 10px;
         text-align: center;
         color: $text-color;
         font-family: $heading-font;
-        font-size: 1.5rem;
+        font-size: 2rem;
         &.price-markdown {
             color: $sale-color;
             font-weight: 700;
@@ -73,7 +62,14 @@ $radius: 10px;
         &.price-base {
             text-decoration: line-through;
             color: $subtext-color;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         }
+    }
+
+    
+    > a.button.primary-button {
+       width: 100%;
+       margin: 16px 0;
+       padding: 16px; 
     }
 }

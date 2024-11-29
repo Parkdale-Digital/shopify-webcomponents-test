@@ -1,7 +1,36 @@
 // Card HTML template
 function templateMaker(productElement) {
   const productCardTemplate = document.createElement("template");
+  const productCardStyles = `
+  <style>
+    .primary-button {
+    width: 90%;
+    margin: 16px 0;
+    padding: 16px;
+    display: inline-block;
+    background: #112A46;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: .5rem;
+    font-weight: 700;
+    border-radius: 5px;
+    }
+    a.primary-button::after {
+     bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    }
+  </style>
+  `;
   productCardTemplate.innerHTML = `
+  ${productCardStyles}
   <div class="product-card-content">
       <a href="${productElement.dataset.url}" aria-label="Go to the product page of ${productElement.dataset.title}" class="product-card-image-wrapper">
           <img src="${productElement.dataset.featuredMedia}"
@@ -16,7 +45,7 @@ function templateMaker(productElement) {
           </a>
           <slot name="price"></slot>
       </div>
-      <a href="${productElement.dataset.url}" aria-label="Go to the product page of ${productElement.dataset.title}">View Product</a>
+      <a class="button primary-button" href="${productElement.dataset.url}" aria-label="Go to the product page of ${productElement.dataset.title}">View Product</a>
   </div>
   `;
   return productCardTemplate;
