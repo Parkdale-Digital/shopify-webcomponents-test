@@ -1,0 +1,42 @@
+// Declaring some variables
+$heading-font: Helvetica, sans-serif;
+$primary-color: #ACC8E5;
+$secondary-color: #CCE4FD;
+$text-color: #112A46;
+$radius: 10px;
+
+// mixins for media queries
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }
+}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }
+}
+
+.product-card-custom {
+    &.product-card-wrapper{
+        width: 90%;
+        max-width: none;
+        margin: 0 auto 30px;
+        display: block;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 30px 20px;
+        border-radius: $radius;
+    
+        @include for-tablet-portrait-up{
+            width: 50%;
+            max-width: 330px;
+        }
+
+        @include for-desktop-up {
+            width: 25%;
+        }
+    }
+        
+}

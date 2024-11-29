@@ -1,6 +1,5 @@
 // Card HTML template
 function templateMaker(productElement) {
-  console.log(productElement);
   const productCardTemplate = document.createElement("template");
   productCardTemplate.innerHTML = `
   <div>
