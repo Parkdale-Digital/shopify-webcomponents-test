@@ -1,6 +1,7 @@
 <div {% render 'section-properties' -%}>
+
+    {% comment %} Setting variables based on liquid {% endcomment %}
     {% assign product = section.settings.product %}
-   {% comment %} Setting variables based on liquid {% endcomment %}
     {%- capture product_srcset -%}
         {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
         {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
@@ -8,9 +9,9 @@
         {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
         {{ product.featured_media | image_url }} {{ product.featured_media.width }}
     {%- endcapture -%}
-  {%- if product and product != empty -%}
+    {%- if product and product != empty -%}
     {% comment %} Web Component with transformed product data for templating  {% endcomment %}
-      <product-card 
+      <product-card         
         id="product-card-{{- product.id -}}"
         class="card-wrapper product-card-custom product-card-wrapper"
         data-id="{{- product.id -}}" 
@@ -25,7 +26,7 @@
       >
       {% comment %} Opted to use slots to keep logic from liquid for price markdown display here instead of within the templateMaker in the JS file {% endcomment %}
         <p class="product-card-price-wrapper" slot="price">
-            {% if product.compare_at_price != empty %}
+            {% if product.compare_at_price != null %}
                 <span class="product-card-price price-markdown">{{- product.price | money -}}</span>
                 <span class="product-card-price price-base">{{- product.compare_at_price | money -}}</span> 
             {% else %}
