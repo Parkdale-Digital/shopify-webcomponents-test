@@ -1,0 +1,41 @@
+<div {% render 'section-properties' -%}>
+    {% assign product = section.settings.product %}
+  <!-- Setting variables based on liquid -->
+    {%- capture product_srcset -%}
+        {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+        {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+        {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+        {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+        {{ product.featured_media | image_url }} {{ product.featured_media.width }}
+    {%- endcapture -%}
+
+  {%- if product and product != empty -%}
+      <product-card
+        data-title="{{- product.title -}}" 
+        data-price="{{- product.price | money -}}" 
+        data-url="{{- product.url -}}"
+        data-product-id="{{- product.id -}}"
+        data-srcsets="{{- product_srcset -}}"
+        data-featured-media="{{- product.featured_media | image_url -}}"
+        data-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+        data-media-alt="{{ product.featured_media.alt | escape }}"
+        data-media-width="{{ product.featured_media.width }}"
+        data-media-height="{{ product.featured_media.height }}"
+      >
+      </product-card>
+  {%- endif -%}
+</div>
+
+
+{% schema %}
+{
+    "name": "Product Card - Ange",
+    "settings": [
+        {
+            "type": "product",
+            "id": "product",
+            "label": "Choose a Product to display"
+        }
+    ]
+}
+{% endschema %}
