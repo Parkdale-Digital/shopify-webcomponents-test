@@ -2,20 +2,21 @@
 function templateMaker(productElement) {
   const productCardTemplate = document.createElement("template");
   productCardTemplate.innerHTML = `
-  <div>
-      <a href="${productElement.dataset.url}">
+  <div class="product-card-content">
+      <a href="${productElement.dataset.url}" aria-label="Go to the product page of ${productElement.dataset.title}" class="product-card-image-wrapper">
           <img src="${productElement.dataset.featuredMedia}"
             srcset="${productElement.dataset.srcsets}"
             sizes="${productElement.dataset.sizes}"
-           alt="${productElement.dataset.mediaAlt}">
+            alt="${productElement.dataset.mediaAlt}"
+            class="product-card-image">
       </a>
-      <div>
-          <a href="${productElement.dataset.url}">
-               <h5 slot="title">${productElement.dataset.title}</h5>
+      <div class="product-card-content-wrapper">
+          <a href="${productElement.dataset.url}" class="product-card-title" aria-label="Go to the product page of ${productElement.dataset.title}">
+               <h5>${productElement.dataset.title}</h5>
           </a>
-          <div><span>${productElement.dataset.price}</span></div>
+          <slot name="price"></slot>
       </div>
-      <a href="${productElement.dataset.url}">View Product</a>
+      <a href="${productElement.dataset.url}" aria-label="Go to the product page of ${productElement.dataset.title}">View Product</a>
   </div>
   `;
   return productCardTemplate;
