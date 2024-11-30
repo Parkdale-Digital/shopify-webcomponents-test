@@ -42,12 +42,12 @@ $radius: 10px;
         border-radius: $radius;
     
         @include for-tablet-portrait-up{
-            width: 50%;
+            width: 45%;
             max-width: 330px;
         }
 
         @include for-desktop-up {
-            width: 25%;
+            width: 20%;
         }
     }
 
@@ -56,6 +56,7 @@ $radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
     }
     
     .product-card-price {

@@ -6,7 +6,7 @@ function templateMaker(productElement) {
     .primary-button {
         width: 90%;
         margin: 16px 0;
-        padding: 16px;
+        padding: 16px 5%;
         display: inline-block;
         background: #112A46;
         text-decoration: none;
