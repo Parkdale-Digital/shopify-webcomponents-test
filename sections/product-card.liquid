@@ -1,51 +1,56 @@
 <div {% render 'section-properties' -%}>
-
     {% comment %} Setting variables based on liquid {% endcomment %}
     {% assign product = section.settings.product %}
-    {%- capture product_srcset -%}
-        {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-        {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-        {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-        {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-        {{ product.featured_media | image_url }} {{ product.featured_media.width }}
-    {%- endcapture -%}
     {%- if product and product != empty -%}
-    {% comment %} Web Component with transformed product data for templating  {% endcomment %}
-      <product-card         
-        id="product-card-{{- product.id -}}"
-        class="card-wrapper product-card-custom product-card-wrapper"
-        data-id="{{- product.id -}}" 
-        data-title="{{- product.title -}}" 
-        data-url="{{- product.url -}}"
-        data-srcsets="{{- product_srcset -}}"
-        data-featured-media="{{- product.featured_media | image_url -}}"
-        data-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-        data-media-alt="{{ product.featured_media.alt | escape }}"
-        data-media-width="{{ product.featured_media.width }}"
-        data-media-height="{{ product.featured_media.height }}"
-      >
-      {% comment %} Opted to use slots to keep logic from liquid for price markdown display here instead of within the templateMaker in the JS file {% endcomment %}
-        <p class="product-card-price-wrapper" slot="price">
-            {% if product.compare_at_price != null %}
-                <span class="product-card-price price-markdown">{{- product.price | money -}}</span>
-                <span class="product-card-price price-base">{{- product.compare_at_price | money -}}</span> 
-            {% else %}
-                <span class="product-card-price">{{- product.price | money -}}</span> 
-            {% endif %}
-        </p>
-      </product-card>
-  {%- endif -%}
+        {%- capture product_srcset -%}
+            {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+            {{ product.featured_media | image_url }} {{ product.featured_media.width }}
+        {%- endcapture -%}
+        {% comment %} Web Component with transformed product data for templating  {% endcomment %}
+        <product-card         
+            id="product-card-{{- product.id -}}"
+            class="card-wrapper product-card-custom product-card-wrapper"
+            data-id="{{- product.id -}}" 
+            data-title="{{- product.title -}}" 
+            data-url="{{- product.url -}}"
+            data-srcsets="{{- product_srcset -}}"
+            data-featured-media="{{- product.featured_media | image_url -}}"
+            data-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+            data-media-alt="{{ product.featured_media.alt | escape }}"
+            data-media-width="{{ product.featured_media.width }}"
+            data-media-height="{{ product.featured_media.height }}"
+        >
+        {% comment %} Opted to use slots to keep logic from liquid for price markdown display here instead of within the templateMaker in the JS file {% endcomment %}
+            <p class="product-card-price-wrapper" slot="price">
+                {% if product.compare_at_price != null %}
+                    <span class="product-card-price price-markdown">{{- product.price | money -}}</span>
+                    <span class="product-card-price price-base">{{- product.compare_at_price | money -}}</span> 
+                {% else %}
+                    <span class="product-card-price">{{- product.price | money -}}</span> 
+                {% endif %}
+            </p>
+        </product-card>
+    {%- endif -%}
 </div>
 
 
 {% schema %}
 {
-    "name": "Product Card - Ange",
+    "name": "Product Card",
     "settings": [
         {
             "type": "product",
             "id": "product",
             "label": "Choose a Product to display"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Card - Ange",
+            "category": "custom"
         }
     ]
 }
