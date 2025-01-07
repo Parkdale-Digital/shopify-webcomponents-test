@@ -1,6 +1,6 @@
 [environments.dev]
-store = "shawnsplaygroundce.myshopify.com"
+store = "pd-msy-dev-test.myshopify.com"
 ignore = ["frontend/","package.json","package-lock.json","**/*.json"]
 
 [environments.prod]
-store = "shawnsplaygroundce.myshopify.com"
+store = "pd-msy-dev-test.myshopify.com"
