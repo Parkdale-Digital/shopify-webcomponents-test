@@ -701,6 +701,13 @@
         "name": "Custom Liquid"
       }
     },
+    "product-card": {
+      "name": "Product Card",
+      "settings": {},
+      "presets": {
+        "name": "Product Card"
+      }
+    },
     "featured-blog": {
       "name": "Blog posts",
       "settings": {
