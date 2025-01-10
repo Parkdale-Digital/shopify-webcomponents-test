@@ -22,3 +22,69 @@
     max-width: 22%;
   }  
 }
+
+.product-card {
+  border: 1px solid #ccc;
+  display: block;
+}
+
+.product-card__media-container {
+  padding: 5px;
+}
+
+.product-thumbnail__link {
+  position: relative;
+}
+
+.card__badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.product-variants {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-variant-button {
+  padding: 2px;
+  border: 1px solid #ccc;
+  display: block;
+}
+
+.product-card__information {
+  padding: 10px 5px;
+  position: relative;
+}
+
+.product-card__information .product-link {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  // Add this to increase the tap target to also include the price
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.product-card__information .price__regular {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.product-card__information .price--on-sale .price__sale {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
