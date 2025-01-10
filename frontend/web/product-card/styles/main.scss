@@ -1,0 +1,24 @@
+/* These styles just setup different container sizes which simulates how the product card will look on different viewports */
+.product-card-demo__container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 48%;
+}
+
+
+@media screen and (min-width: 768px) {
+  .product-card-demo__container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 30%;
+  }  
+}
+
+
+@media screen and (min-width: 1024px) {
+  .product-card-demo__container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 22%;
+  }  
+}

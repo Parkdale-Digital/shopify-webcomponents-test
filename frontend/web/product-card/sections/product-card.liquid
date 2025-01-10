@@ -20,49 +20,51 @@
 
 
 <div class="section-{{ section.id }}-padding">
-  {% if product %}
-    <product-card class="product-card">
-      <div class="product-card__media-container">
-        <a href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">
-          <picture class="product-card-picture">
-            <img 
-              src="{{ product.selected_or_first_available_variant.featured_image |  image_url: width: 300  }}" 
-              width="300" 
-              height="300" 
-              alt="{{ product.selected_or_first_available_variant.title }}"
-              loading="lazy"
-              />
-          </picture>
+  <div class="product-card-demo__container">
+    {% if product %}
+      <product-card class="product-card">
+        <div class="product-card__media-container">
+          <a href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">
+            <picture class="product-card-picture">
+              <img 
+                src="{{ product.selected_or_first_available_variant.featured_image |  image_url: width: 300  }}" 
+                width="300" 
+                height="300" 
+                alt="{{ product.selected_or_first_available_variant.title }}"
+                loading="lazy"
+                />
+            </picture>
 
-          <div class="card__badge {{ settings.badge_position }}">
-            {%- if product.available == false -%}
-              <span
-                id="Badge-{{ section_id }}-{{ product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-              >
-                {{- 'products.product.sold_out' | t -}}
-              </span>
-            {%- elsif product.compare_at_price > product.price and product.available -%}
-              <span
-                id="Badge-{{ section_id }}-{{ product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-              >
-                {{- 'products.product.on_sale' | t -}}
-              </span>
-            {%- endif -%}
-          </div>
+            <div class="card__badge {{ settings.badge_position }}">
+              {%- if product.available == false -%}
+                <span
+                  id="Badge-{{ section_id }}-{{ product.id }}"
+                  class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
+                >
+                  {{- 'products.product.sold_out' | t -}}
+                </span>
+              {%- elsif product.compare_at_price > product.price and product.available -%}
+                <span
+                  id="Badge-{{ section_id }}-{{ product.id }}"
+                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                >
+                  {{- 'products.product.on_sale' | t -}}
+                </span>
+              {%- endif -%}
+            </div>
 
-        </a>
-      </div>
+          </a>
+        </div>
 
-      <div class="product-card__information">
-        <h3 class="product-card-heading">
-          <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">{{ product.title | escape  }}</a>
-        </h3>
-        {% render 'price', product: product %}
-      </div>
-    </product-card>
-  {% endif %}
+        <div class="product-card__information">
+          <h3 class="product-card-heading">
+            <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">{{ product.title | escape  }}</a>
+          </h3>
+          {% render 'price', product: product %}
+        </div>
+      </product-card>
+    {% endif %}
+  </div>
  </div>
 
 
