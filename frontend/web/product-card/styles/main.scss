@@ -101,4 +101,14 @@
   justify-content: flex-start;
 }
 
+.price__sale .original-price {
+  text-decoration: line-through;
+}
 
+.product-card .card__badge {
+  display: none;
+}
+
+.price--on-sale .card__badge {
+  display: block;
+} 

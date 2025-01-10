@@ -1,5 +1,5 @@
 
-{%- capture json_data -%}{"product_title": "{{- product.title -}}","product_id": "{{-product.id-}}", 
+{%- capture product_json_data -%}{"product_title": "{{- product.title -}}","product_id": "{{-product.id-}}", 
 "variants": {
   {% for variant in product.variants %}
     "{{ variant.id }}": {
@@ -16,12 +16,16 @@
   {% endfor %}}
 }{%- endcapture -%}
 
+{% capture product_json_copy %}
+{ "sale_label": "{{- 'products.product.on_sale' | t -}}" }
+{% endcapture %}
 
 
 <product-card 
   class="product-card"
-  data-product-data="{{ json_data |  escape }}"
+  data-product-data="{{ product_json_data |  escape }}"
   data-active-variant="{{ product.selected_or_first_available_variant.id }}"
+  data-product-locale="{{ product_json_copy |  escape }}"
   >
   <div class="product-card__media-container">
     <a class="product-thumbnail__link" href="" aria-label="">
@@ -36,21 +40,10 @@
       </picture>
 
       <div class="card__badge {{ settings.badge_position }}">
-        {%- if product.available == false -%}
-          <span
-            id="Badge-{{ section_id }}-{{ product.id }}"
-            class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-          >
-            {{- 'products.product.sold_out' | t -}}
-          </span>
-        {%- elsif product.compare_at_price > product.price and product.available -%}
-          <span
-            id="Badge-{{ section_id }}-{{ product.id }}"
-            class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-          >
-            {{- 'products.product.on_sale' | t -}}
-          </span>
-        {%- endif -%}
+        <span
+          id="Badge-{{ section_id }}-{{ product.id }}"
+          class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+        ></span>
       </div>
     </a>
 
@@ -62,8 +55,13 @@
       <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="" aria-label="" class="product-link">Loading...</a>
     </h3>
     <div class="price">
-      <div class="regular-price"></div>
-      <div class="sale-price"></div>
+      <div class="price__regular">
+        <span class="regular-price"></span>
+      </div>
+      <div class="price__sale">
+        <span class="original-price"></span>
+        <span class="sale-price"></span>
+      </div>
     </div>
   </div>
 </product-card>

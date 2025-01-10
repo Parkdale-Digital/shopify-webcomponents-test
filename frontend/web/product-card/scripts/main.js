@@ -9,9 +9,14 @@
       this.variantThumbsContainer = this.querySelector('.product-variants');
       this.productLink = this.querySelector('.product-link');
       this.productCardThumbLink = this.querySelector('.product-thumbnail__link');
+      this.regularPrice = this.querySelector('.regular-price');
+      this.originalPrice = this.querySelector('.original-price');
+      this.salePrice = this.querySelector('.sale-price');
+      this.saleBadge = this.querySelector('.badge');
       
       this.activeVariant = this.dataset.activeVariant;
       this.productData = JSON.parse(this.dataset.productData);
+      this.productLocale = JSON.parse(this.dataset.productLocale);
       this.variants = this.productData.variants;
       this.activeVariantData = this.productData.variants[this.activeVariant];
       
@@ -67,6 +72,23 @@
       this.productLink.ariaLabel = this.activeVariantData['variant_title'];
       this.productCardThumbLink.href = this.activeVariantData['url'];
       this.productCardThumbLink.ariaLabel = this.activeVariantData['variant_title'];
+
+      this.originalPrice.innerHTML = '';
+      this.salePrice.innerHTML = '';
+      this.regularPrice.innerHTML = '';
+
+      if(this.activeVariantData['is_sale']) {
+        this.classList.add('price--on-sale');
+        this.originalPrice.innerHTML = this.activeVariantData['compare_at_price'];
+        this.salePrice.innerHTML = this.activeVariantData['price'];
+        this.saleBadge.innerHTML = this.productLocale['sale_label'];
+      } else {
+        this.classList.remove('price--on-sale');
+        this.regularPrice.innerHTML = this.activeVariantData['price'];
+        this.saleBadge.innerHTML = '';
+      }
+
+
     }
 
     
