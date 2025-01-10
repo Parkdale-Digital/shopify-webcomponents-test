@@ -24,7 +24,7 @@
   data-active-variant="{{ product.selected_or_first_available_variant.id }}"
   >
   <div class="product-card__media-container">
-    <a class="product-thumbnail__link" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">
+    <a class="product-thumbnail__link" href="" aria-label="">
       <picture class="product-card-picture">
         <source class="product-image--large" media="(min-width: 768px)" srcset="" />
         <img 
@@ -54,16 +54,12 @@
       </div>
     </a>
 
-    <ul class="product-variants">
-      {% for variant in product.variants %}
-      
-      {% endfor %}
-    </ul>
+    <ul class="product-variants"></ul>
   </div>
 
   <div class="product-card__information">
     <h3 class="product-card-heading">
-      <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" class="product-link">Loading...</a>
+      <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="" aria-label="" class="product-link">Loading...</a>
     </h3>
     <div class="price">
       <div class="regular-price"></div>

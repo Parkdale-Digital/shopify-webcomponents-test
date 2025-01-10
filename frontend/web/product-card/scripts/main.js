@@ -7,6 +7,8 @@
       this.productThumbnail = this.querySelector('.product-image');
       this.productThumbnailLarge = this.querySelector('.product-image--large');
       this.variantThumbsContainer = this.querySelector('.product-variants');
+      this.productLink = this.querySelector('.product-link');
+      this.productCardThumbLink = this.querySelector('.product-thumbnail__link');
       
       this.activeVariant = this.dataset.activeVariant;
       this.productData = JSON.parse(this.dataset.productData);
@@ -60,9 +62,14 @@
       this.productThumbnailLarge.srcset = this.activeVariantData['image_large'];
       this.productThumbnail.src = this.activeVariantData['image'];
       this.productThumbnail.alt = this.activeVariantData['variant_title'];
+      this.productLink.innerHTML = this.productData['product_title'];
+      this.productLink.href = this.activeVariantData['url'];
+      this.productLink.ariaLabel = this.activeVariantData['variant_title'];
+      this.productCardThumbLink.href = this.activeVariantData['url'];
+      this.productCardThumbLink.ariaLabel = this.activeVariantData['variant_title'];
     }
 
-    renderVariant
+    
   }
 
   customElements.define('product-card', ProductCard);
