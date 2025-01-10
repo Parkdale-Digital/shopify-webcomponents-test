@@ -68,6 +68,10 @@
   margin: 0 5px;
 }
 
+.product-variant-button--active {
+  border: 2px solid #53e7c9;
+}
+
 .product-card__information {
   padding: 10px 5px;
   position: relative;
@@ -111,4 +115,7 @@
 
 .price--on-sale .card__badge {
   display: block;
-} 
+}
+
+
+

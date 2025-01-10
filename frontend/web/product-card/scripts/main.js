@@ -3,7 +3,7 @@
   class ProductCard extends HTMLElement {
     constructor() {
       super();
-      this.variantButtons = Array.from(this.querySelectorAll('.product-variant-button'));
+      this.variantButtons = [];
       this.productThumbnail = this.querySelector('.product-image');
       this.productThumbnailLarge = this.querySelector('.product-image--large');
       this.variantThumbsContainer = this.querySelector('.product-variants');
@@ -30,6 +30,8 @@
     connectedCallback() {
       this.renderProductContents();
       this.renderVariantThumbnails();
+      this.clearVariantThumb();
+      this.setActiveVariantThumb()
       this.bindUIElements();
     }
 
@@ -37,10 +39,27 @@
       this.unbindUIElements();
     }
 
+    onVariantButtonClick(e) {
+      const newVariant = e.target.parentElement.dataset.variantId;
+      e.preventDefault();
+
+      this.activeVariant = newVariant;
+      this.activeVariantData = this.productData.variants[newVariant];
+      this.dataset.activeVariant = newVariant;
+      this.renderProductContents();
+
+      this.clearVariantThumb();
+      this.setActiveVariantThumb()
+
+    }
+
     bindUIElements() {
+      let onVariantButtonClick = this.onVariantButtonClick.bind(this);
+      this.variantButtons = Array.from(this.querySelectorAll('.product-variant-button'));
+
       for(let variantButton of this.variantButtons) {
         console.log(variantButton);
-
+        variantButton.addEventListener('click', onVariantButtonClick);
       }
     }
 
@@ -88,9 +107,22 @@
         this.saleBadge.innerHTML = '';
       }
 
-
     }
 
+
+    clearVariantThumb() {
+      for(let variantButton of this.variantButtons) {
+        variantButton.classList.remove('product-variant-button--active');
+      }
+    }
+
+    setActiveVariantThumb() {
+      let activeVariant = this.querySelector(`.product-variant-button[data-variant-id="${this.activeVariant}"]`);
+
+      if(activeVariant) {
+        activeVariant.classList.add('product-variant-button--active');
+      }
+    }
     
   }
 
