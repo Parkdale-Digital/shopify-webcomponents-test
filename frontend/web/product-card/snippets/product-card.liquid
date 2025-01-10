@@ -1,12 +1,35 @@
 
-<product-card class="product-card">
+{%- capture json_data -%}{"product_title": "{{- product.title -}}","product_id": "{{-product.id-}}", 
+"variants": {
+  {% for variant in product.variants %}
+    "{{ variant.id }}": {
+      "id": "{{variant.id}}",
+      "variant_title": "{{ product.title }} - {{ variant.title }}",
+      "url": "{{ variant.url }}",
+      "image": "{{ variant.featured_image |  image_url: width: 210  }}",
+      "image_large": "{{ variant.featured_image |  image_url: width: 260  }}",
+      "image_switch_thumb": "{{ variant.featured_image |  image_url: width: 50  }}",
+      "is_sale": {% if variant.compare_at_price > variant.price %}true{% else %}false{% endif %},
+      "compare_at_price": "{{- variant.compare_at_price | money -}}",
+      "price": "{{- variant.price |  money -}}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}}
+}{%- endcapture -%}
+
+
+
+<product-card 
+  class="product-card"
+  data-product-data="{{ json_data |  escape }}"
+  data-active-variant="{{ product.selected_or_first_available_variant.id }}"
+  >
   <div class="product-card__media-container">
     <a class="product-thumbnail__link" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">
       <picture class="product-card-picture">
-        <source media="(min-width: 768px)" srcset="{{ product.selected_or_first_available_variant.featured_image |  image_url: width: 260  }}" />
+        <source class="product-image--large" media="(min-width: 768px)" srcset="" />
         <img 
-          src="{{ product.selected_or_first_available_variant.featured_image |  image_url: width: 210  }}"
-          alt="{{ product.selected_or_first_available_variant.title }}"
+          src=""
+          alt=""
           class="product-image"
           loading="lazy"
           />
@@ -33,20 +56,18 @@
 
     <ul class="product-variants">
       {% for variant in product.variants %}
-      <li class="product-variant__item">
-        {% comment %} The variant <a> tag was used just in case of disabled javascript on page which will link the thumbnail to the actual  {% endcomment %}
-        <a href="{{ variant.url }}" class="product-variant-button" data-variant-id="{{ variant.id }}" aria-label="{{ product.title }} - {{ variant.title }}">
-          <img src="{{ variant.featured_image |  image_url: width: 50  }}" alt="{{ variant.title }}" loading="lazy" width="50" height="50" />
-        </a>
-      </li>
+      
       {% endfor %}
     </ul>
   </div>
 
   <div class="product-card__information">
     <h3 class="product-card-heading">
-      <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" class="product-link">{{ product.title | escape  }}</a>
+      <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" class="product-link">Loading...</a>
     </h3>
-    {% render 'price', product: product %}
+    <div class="price">
+      <div class="regular-price"></div>
+      <div class="sale-price"></div>
+    </div>
   </div>
 </product-card>
