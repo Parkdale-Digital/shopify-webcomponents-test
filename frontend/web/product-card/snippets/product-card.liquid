@@ -1,0 +1,52 @@
+
+<product-card class="product-card">
+  <div class="product-card__media-container">
+    <a class="product-thumbnail__link" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}">
+      <picture class="product-card-picture">
+        <source media="(min-width: 768px)" srcset="{{ product.selected_or_first_available_variant.featured_image |  image_url: width: 260  }}" />
+        <img 
+          src="{{ product.selected_or_first_available_variant.featured_image |  image_url: width: 210  }}"
+          alt="{{ product.selected_or_first_available_variant.title }}"
+          class="product-image"
+          loading="lazy"
+          />
+      </picture>
+
+      <div class="card__badge {{ settings.badge_position }}">
+        {%- if product.available == false -%}
+          <span
+            id="Badge-{{ section_id }}-{{ product.id }}"
+            class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
+          >
+            {{- 'products.product.sold_out' | t -}}
+          </span>
+        {%- elsif product.compare_at_price > product.price and product.available -%}
+          <span
+            id="Badge-{{ section_id }}-{{ product.id }}"
+            class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+          >
+            {{- 'products.product.on_sale' | t -}}
+          </span>
+        {%- endif -%}
+      </div>
+    </a>
+
+    <ul class="product-variants">
+      {% for variant in product.variants %}
+      <li class="product-variant__item">
+        {% comment %} The variant <a> tag was used just in case of disabled javascript on page which will link the thumbnail to the actual  {% endcomment %}
+        <a href="{{ variant.url }}" class="product-variant-button" data-variant-id="{{ variant.id }}" aria-label="{{ product.title }} - {{ variant.title }}">
+          <img src="{{ variant.featured_image |  image_url: width: 50  }}" alt="{{ variant.title }}" loading="lazy" width="50" height="50" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="product-card__information">
+    <h3 class="product-card-heading">
+      <a id="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" href="{{ product.selected_or_first_available_variant.url }}" aria-labelledby="productLink-{{ product.selected_or_first_available_variant.id }}-{{ section_id }}" class="product-link">{{ product.title | escape  }}</a>
+    </h3>
+    {% render 'price', product: product %}
+  </div>
+</product-card>
