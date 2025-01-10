@@ -18,8 +18,8 @@
 @media screen and (min-width: 1024px) {
   .product-card-demo__container {
     margin: 0 auto;
-    width: 100%;
-    max-width: 22%;
+    width: 22%;
+    max-width: 260px;
   }  
 }
 
@@ -57,7 +57,7 @@
 
 .product-variants {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -65,6 +65,7 @@
   padding: 2px;
   border: 1px solid #ccc;
   display: block;
+  margin: 0 5px;
 }
 
 .product-card__information {
